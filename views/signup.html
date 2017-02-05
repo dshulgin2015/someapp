@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <div class="col-sm-6 col-sm-offset-3">
+
+        <h1><span class="fa fa-sign-in"></span> Signup</h1>
+
+        <form action="/signup" method="post">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="username">
+            </div>
+            <div id="genders" class="form-group">
+
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-warning btn-lg">Signup</button>
+        </form>
+
+        <hr>
+
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Or go <a href="/">home</a>.</p>
+
+    </div>
+
+</div>
+<script>
+    var newDiv = document.createElement('div');
+    var genders = {
+        "M-M-M": "Masculine Homosexual Man",
+        "M-M-F": "Masculine Heterosexual Man",
+        "M-M-A": "Masculine Bisexual Man",
+        "M-F-M": "Feminine Homosexual Man",
+        "M-F-F": "Feminine Heterosexual Man",
+        "M-F-A": "Feminine Bisexual Man",
+        "M-A-M": "Androgine Homosexual Man",
+        "M-A-F": "Androgine Heterosexual Man",
+        "M-A-A": "Androgine Bisexual Man",
+        "F-M-M": "Masculine Heterosexual Woman",
+        "F-M-F": "Masculine Homosexual Woman",
+        "F-M-A": "Masculine Bisexual Woman",
+        "F-F-M": "Feminine Heterosexual Woman",
+        "F-F-F": "Feminine Homosexual Woman",
+        "F-F-A": "Feminine Bisexual Woman",
+        "F-A-M": "Androgine Heterosexual Woman",
+        "F-A-F": "Androgine Homosexual Woman",
+        "F-A-A": "Androgine Bisexual Woman",
+        "AM-M-M": "Masculine Homosexual Andromale",
+        "AF-M-M": "Masculine Heterosexual Androfemale",
+        "HA-M-M": "Masculine Male-Attracted Androdite",
+        "HM-M-M": "Masculine Male-Attracted Hermaphromale",
+        "HF-M-M": "Masculine Male-Attracted Hermaphrofemale",
+        "AM-M-F": "Masculine Heterosexual Andromale",
+        "AF-M-F": "Masculine Homosexual Androfemale",
+        "HA-M-F": "Masculine Female-Attracted Androdite",
+        "HM-M-F": "Masculine Female-Attracted Hermaphromale",
+        "HF-M-F": "Masculine Female-Attracted Hermaphrofemale",
+        "AM-M-A": "Masculine Bisexual Andromale",
+        "AM-F-M": "Feminine Homosexual Andromale",
+        "AF-F-M": "Feminine Heterosexual Androfemale",
+        "HA-F-M": "Feminine Male-Attracted Androdite",
+        "HM-F-M": "Feminine Male-Attracted Hermaphromale",
+        "HF-F-M": "Feminine Male-Attracted Hermaphrofemale",
+        "AM-F-F": "Feminine Heterosexual Andromale",
+        "AF-F-F": "Feminine Homosexual Androfemale",
+        "HA-F-F": "Feminine Female-Attracted Androdite",
+        "HM-F-F": "Feminine Female-Attracted Hermaphromale",
+        "HF-F-F": "Feminine Female-Attracted Hermaphrofemale",
+        "AM-F-A": "Feminine Bisexual Andromale",
+        "AF-F-A": "Feminine Bisexual Androfemale",
+        "HA-F-A": "Feminine Bisexual Androdite",
+        "HM-F-A": "Feminine Bisexual Hermaphromale",
+        "HF-F-A": "Feminine Bisexual Hermaphrofemale",
+        "AM-A-M": "Androgine Homosexual Andromale",
+        "AF-A-M": "Androgine Heterosexual Androfemale",
+        "HA-A-M": "Androgine Male-Attracted Androdite",
+        "HM-A-M": "Androgine Male-Attracted Hermaphromale",
+        "HF-A-M": "Androgine Male-Attracted Hermaphrofemale",
+        "AM-A-F": "Androgine Heterosexual Andromale",
+        "AF-A-F": "Androgine Homosexual Androfemale",
+        "HA-A-F": "Androgine Female-Attracted Androdite",
+        "HM-A-F": "Androgine Female-Attracted Hermaphromale",
+        "HF-A-F": "Androgine Female-Attracted Hermaphrofemale",
+        "AM-A-A": "Androgine Bisexual Andromale",
+        "AF-A-A": "Androgine Bisexual Androfemale",
+        "HA-A-A": "Androgine Bisexual Androdite",
+        "HM-A-A": "Androgine Bisexual Hermaphromale",
+        "HF-A-A": "Androgine Bisexual Hermaphrofemale"
+    };
+    var values = Object.keys(genders).map(function (key) {
+        return genders[key];
+    });
+    var keys = Object.keys(genders);
+    var selectHTML = '<label>Gender</label>: <select id="gender" name="gender">';
+
+    selectHTML += '<option value="" disabled selected>Select your option</option>';
+    for (var i = 0; i < values.length; i++) {
+        selectHTML += '<option value="' + keys[i] + '">' + values[i] + '</option>';
+    }
+    selectHTML += "</select>";
+    newDiv.innerHTML = selectHTML;
+    document.getElementById('genders').appendChild(newDiv);
+</script>
+</body>
+</html>

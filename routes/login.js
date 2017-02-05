@@ -7,6 +7,6 @@ var router = express.Router();
 router.get('/', function(req, res) {
 
     // render the page and pass in any flash data if it exists
-    res.render('login.pug');
+    res.render('login.html');
 });
 module.exports = router;

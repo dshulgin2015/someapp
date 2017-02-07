@@ -6,7 +6,6 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "file:///home/user/Downloads/node.bcrypt.js-1.0.2.tar.gz",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.16.0",

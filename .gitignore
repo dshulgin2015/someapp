@@ -5,8 +5,7 @@ npm-debug.log*
 
 #idea
 .idea
-#migrations
-migrations
+
 # Runtime data
 pids
 *.pid

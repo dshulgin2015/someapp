@@ -1,9 +1,12 @@
 // Update with your config settings.
+var dotenv = require('dotenv');
+dotenv.load();
+
 
 module.exports = {
 
   development: {
-		client: 'postgresql',
+		client: 'pg',
     connection: process.env.DATABASE_URL,
     pool: {
       min: 2,

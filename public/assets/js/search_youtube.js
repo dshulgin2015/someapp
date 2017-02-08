@@ -30,7 +30,6 @@ function showResults(results) {
         var title = value.snippet.title;
         html += '<p>' + title + '</p>';
         html += '<iframe width="420" height="315" src="https://www.youtube.com/embed/' + value.id.videoId + '"'+ '</iframe>'
-        console.log(html);
     });
 
     $('#search-results').html(html);

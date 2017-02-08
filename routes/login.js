@@ -23,8 +23,8 @@ router.post('/', function (req, res, next) {
             if (!req.body.loggedin) {
                 var randomNumber=Math.random().toString();
                 randomNumber=randomNumber.substring(2,randomNumber.length);
-                res.cookie('loggedin',randomNumber, { maxAge: 900000, httpOnly: true });
-                res.cookie('username', user, { maxAge: 900000, httpOnly: true });
+                res.cookie('loggedin',randomNumber, { maxAge: 900000 });
+                res.cookie('username', user, { maxAge: 900000});
             }
             return res.redirect('/profile');
         });

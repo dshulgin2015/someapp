@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
                 res.cookie('loggedin',randomNumber, { maxAge: 900000 });
                 res.cookie('username', user, { maxAge: 900000});
             }
-            return res.redirect('/profile');
+            return res.redirect('/profile?name='+user.username);
         });
     })(req, res, next);
 

@@ -9,31 +9,14 @@
     <script src="assets/js/search_youtube.js" type="text/javascript"></script>
 </head>
 <body>
-<script type="text/javascript">
 
-    // Original JavaScript code by Chirp Internet: www.chirp.com.au
-    // Please acknowledge use of this code by including this header.
-    function listCookies() {
-        var theCookies = document.cookie.split(';');
-        var aString = '';
-        for (var i = 1 ; i <= theCookies.length; i++) {
-            aString += i + ' ' + theCookies[i-1] + "\n";
-        }
-        return aString;
-    }
-
-    function getCookie(name)
-    {
-        var re = new RegExp(name + "=([^;]+)");
-        var value = re.exec(document.cookie);
-        return (value != null) ? unescape(value[1]) : null;
-    }
-
-</script>
 
 <div style="position:absolute;top:0px;right:0px">
+    <p id="name"></p>
     <script>
-        listCookies();
+        var s = document.getElementById('name');
+        s.value = document.cookie.split(';')[1];
+
     </script>
 
 </div>

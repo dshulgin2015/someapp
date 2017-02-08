@@ -7,6 +7,8 @@ const authHelpers = require('../config/_helpers');
 
 
 router.get('/', authHelpers.loginRequired, (req, res, next) => {
+    res.clearCookie("loggedin");
+    res.clearCookie("username");
     req.logout();
     //handleResponse(res, 200, 'success');
     res.redirect('/');

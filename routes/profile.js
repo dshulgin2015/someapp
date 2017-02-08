@@ -6,7 +6,9 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
+    console.log(req.user);
     if (req.user){
+
         return next();
     }
     res.redirect('/');

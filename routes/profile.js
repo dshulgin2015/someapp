@@ -6,8 +6,7 @@ var express = require('express');
 var router = express.Router();
 
 var isAuthenticated = function (req, res, next) {
-    console.log(req.user);
-    if (req.user){
+    if (req.cookies.loggedin || req.user){
 
         return next();
     }

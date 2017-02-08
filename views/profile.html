@@ -34,8 +34,14 @@
 
 </body>
 <script>
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
     var s = document.getElementById('name');
-    s.textContent = document.cookie.split(';')[0];
+    s.textContent = 'Hello, ' + getCookie('username');
 
 </script>
 </html>

@@ -3,11 +3,13 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 const passport = require('passport');
 var index = require('./routes/index');
 var login = require('./routes/login');
+var upload = require('./routes/upload');
 var logout = require('./routes/logout');
 var signup = require('./routes/signup');
 var profile = require('./routes/profile');
@@ -21,11 +23,14 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
+
 app.use(logger('dev'));
+//app.use(fileUpload());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+
 app.use(session({
     secret: 'anything',
     resave: true,
@@ -44,6 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/upload', upload);
 app.use('/signup', signup);
 app.use('/profile', profile);
 

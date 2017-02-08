@@ -12,13 +12,7 @@
 
 
 <div style="position:absolute;top:0px;right:0px">
-    <p id="name"></p>
-    <script>
-        var s = document.getElementById('name');
-        s.value = document.cookie.split(';')[1];
-
-    </script>
-
+    <span id="name"></span>
 </div>
 
 <form id="search-term">
@@ -39,4 +33,9 @@
 
 
 </body>
+<script>
+    var s = document.getElementById('name');
+    s.textContent = document.cookie.split(';')[0];
+
+</script>
 </html>

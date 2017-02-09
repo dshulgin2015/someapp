@@ -3,9 +3,10 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var fileUpload = require('express-fileupload');
+//var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+
 const passport = require('passport');
 var index = require('./routes/index');
 var login = require('./routes/login');

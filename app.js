@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 //var fileUpload = require('express-fileupload');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+//var busboy = require('connect-busboy');
 
 const passport = require('passport');
 var index = require('./routes/index');
@@ -14,6 +15,7 @@ var upload = require('./routes/upload');
 var logout = require('./routes/logout');
 var signup = require('./routes/signup');
 var profile = require('./routes/profile');
+var busboy = require('busboy');
 
 
 var app = express();
@@ -28,9 +30,18 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use(logger('dev'));
 //app.use(fileUpload());
+
+//app.use(busboy());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+/**bodyParser.json(options)
+ * Parses the text as JSON and exposes the resulting object on req.body.
+ */
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+
 
 app.use(session({
     secret: 'anything',

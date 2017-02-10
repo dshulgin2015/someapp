@@ -23,11 +23,11 @@ var isAuthenticated = function (req, res, next) {
     res.redirect('/');
 }
 router.get('/', isAuthenticated, function(req, res) {
-
+    console.log(req.cookies.username);
     knex('users').where({
         username: req.cookies.username
     }).select('avatar').then(function (values) {
-        console.log(values[0].avatar);
+        console.log(111, values[0].avatar);
         res.render('profile.html', {avatar: cloudinary.image(values[0].avatar)});
     });
 

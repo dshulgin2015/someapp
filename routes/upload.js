@@ -46,8 +46,7 @@ router.post('/',function(req, res) {
     console.log("1st point");
 
     var busboy = new Busboy({ headers: req.headers });
-    console.log(busboy)
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+    busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
 
         console.log("can never be reached");
         //
@@ -60,6 +59,7 @@ router.post('/',function(req, res) {
         //
         // }).pipe(cloudinary_stream);
     });
+    console.log(111, busboy)
     console.log('2nd point')
     req.pipe(busboy);
     console.log('3rd point')

@@ -53,8 +53,6 @@ router.post('/',function(req, res) {
 
             console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
             chunks.push(data);
-
-
         });
         file.on('end', function() {
             var buffer = Buffer.concat(chunks);

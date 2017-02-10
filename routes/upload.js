@@ -46,7 +46,7 @@ router.post('/',function(req, res) {
     console.log("1st point");
 
     var busboy = new Busboy({ headers: req.headers });
-    busboy.on('error', function (err) { abortWithError(err) });
+    busboy.on('error', function (err) { console.log(err) });
     // busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
     //
     //     console.log("can never be reached");

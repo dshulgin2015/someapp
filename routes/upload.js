@@ -34,32 +34,30 @@ cloudinary.config({
 var cloudinary_stream = null;
 router.post('/',function(req, res) {
 
+    cloudinary_stream = cloudinary.uploader.upload_stream(function(result) { //renew stream to avoid "write after end" error
+        console.log(result);
+        knex('users').where('username', '=', req.cookies.username).update({
+            avatar: result.public_id + '.' + result.format,
+        }).then(function (count) {
+            console.log(count);
+        });
+    });
+
     console.log("1st point");
 
     var busboy = new Busboy({ headers: req.headers });
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+    busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
 
         console.log("can never be reached");
-        cloudinary_stream = cloudinary.uploader.upload_stream(function(result) { //renew stream to avoid "write after end" error
-            console.log(result);
-            knex('users').where('username', '=', req.cookies.username).update({
-                avatar: result.public_id + '.' + result.format,
-            }).then(function (count) {
-                console.log(count);
-            });
-        });
-        var chunks = [];
-        file.on('data', function(data) {
-
-            console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
-            chunks.push(data);
-        });
-        file.on('end', function() {
-            var buffer = Buffer.concat(chunks);
-
-            console.log('File [' + fieldname + '] got ' + buffer.length + ' bytes');
-
-        }).pipe(cloudinary_stream);
+        //
+        // var chunks = [];
+        // file.on('data', function(data) {
+        //     chunks.push(data);
+        // });
+        // file.on('end', function() {
+        //     var buffer = Buffer.concat(chunks);
+        //
+        // }).pipe(cloudinary_stream);
     });
     console.log('2nd point')
     req.pipe(busboy);

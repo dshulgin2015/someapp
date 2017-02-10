@@ -49,20 +49,14 @@ router.post('/',function(req, res) {
     busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
 
         console.log("can never be reached");
-        //
-        // var chunks = [];
-        // file.on('data', function(data) {
-        //     chunks.push(data);
-        // });
-        // file.on('end', function() {
-        //     var buffer = Buffer.concat(chunks);
-        //
-        // }).pipe(cloudinary_stream);
     });
-    console.log(111, busboy)
-    console.log('2nd point')
+
     req.pipe(busboy);
-    console.log('3rd point')
+    setTimeout((function() {
+        busboy.end();
+    }), 500000);
+    console.log("2nd point");
+    busboy
     res.redirect('/profile');
 
 

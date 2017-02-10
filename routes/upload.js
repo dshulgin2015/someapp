@@ -34,22 +34,23 @@ cloudinary.config({
 var cloudinary_stream = null;
 router.post('/',function(req, res) {
 
-    cloudinary_stream = cloudinary.uploader.upload_stream(function(result) { //renew stream to avoid "write after end" error
-        console.log(result);
-        knex('users').where('username', '=', req.cookies.username).update({
-            avatar: result.public_id + '.' + result.format,
-        }).then(function (count) {
-            console.log(count);
-        });
-    });
+    // cloudinary_stream = cloudinary.uploader.upload_stream(function(result) { //renew stream to avoid "write after end" error
+    //     console.log(result);
+    //     knex('users').where('username', '=', req.cookies.username).update({
+    //         avatar: result.public_id + '.' + result.format,
+    //     }).then(function (count) {
+    //         console.log(count);
+    //     });
+    // });
 
     console.log("1st point");
 
     var busboy = new Busboy({ headers: req.headers });
-    busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
-
-        console.log("can never be reached");
-    });
+    busboy.on('error', function (err) { abortWithError(err) });
+    // busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
+    //
+    //     console.log("can never be reached");
+    // });
 
     req.pipe(busboy);
     setTimeout((function() {

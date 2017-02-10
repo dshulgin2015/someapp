@@ -34,29 +34,40 @@ cloudinary.config({
 var cloudinary_stream = null;
 router.post('/',function(req, res) {
 
-    // cloudinary_stream = cloudinary.uploader.upload_stream(function(result) { //renew stream to avoid "write after end" error
-    //     console.log(result);
-    //     knex('users').where('username', '=', req.cookies.username).update({
-    //         avatar: result.public_id + '.' + result.format,
-    //     }).then(function (count) {
-    //         console.log(count);
-    //     });
-    // });
-
     console.log("1st point");
 
     var busboy = new Busboy({ headers: req.headers });
-    busboy.on('error', function (err) { console.log(err) });
-    // busboy.on('field', function(fieldname, file, filename, encoding, mimetype) {
-    //
-    //     console.log("can never be reached");
-    // });
+    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
 
-    req.pipe(busboy);
+        console.log("can never be reached");
+        cloudinary_stream = cloudinary.uploader.upload_stream(function(result) { //renew stream to avoid "write after end" error
+            console.log(result);
+            knex('users').where('username', '=', req.cookies.username).update({
+                avatar: result.public_id + '.' + result.format,
+            }).then(function (count) {
+                console.log(count);
+            });
+        });
+        var chunks = [];
+        file.on('data', function(data) {
 
-    console.log("2nd point");
-    busboy
-    res.redirect('/profile');
+            console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+            chunks.push(data);
+        });
+        file.on('end', function() {
+            var buffer = Buffer.concat(chunks);
+
+            console.log('File [' + fieldname + '] got ' + buffer.length + ' bytes');
+
+        }).pipe(cloudinary_stream);
+    });
+    console.log('2nd point')
+    var req_stream = req.pipe(busboy);
+    req_stream.on('finish', function () {
+        res.redirect('/profile');
+    });
+
+
 
 
 

@@ -53,9 +53,7 @@ router.post('/',function(req, res) {
     // });
 
     req.pipe(busboy);
-    setTimeout((function() {
-        busboy.end();
-    }), 500000);
+
     console.log("2nd point");
     busboy
     res.redirect('/profile');

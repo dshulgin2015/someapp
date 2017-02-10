@@ -24,6 +24,7 @@ var Busboy = require('busboy');
 
 
 
+
 cloudinary.config({
     cloud_name: 'hsbx7mifa',
     api_key: '916412692886171',
@@ -47,13 +48,27 @@ router.post('/',function(req, res) {
                 console.log(count);
             });
         });
-        file.pipe(cloudinary_stream);
+        var chunks = [];
+        file.on('data', function(data) {
 
+            console.log('File [' + fieldname + '] got ' + data.length + ' bytes');
+            chunks.push(data);
+
+
+        });
+        file.on('end', function() {
+            var buffer = Buffer.concat(chunks);
+
+            console.log('File [' + fieldname + '] got ' + buffer.length + ' bytes');
+
+        }).pipe(cloudinary_stream);
     });
     console.log('2nd point')
     req.pipe(busboy);
     console.log('3rd point')
     res.redirect('/profile');
+
+
 
 });
 

@@ -26,9 +26,9 @@ router.get('/', isAuthenticated, function(req, res) {
     console.log(req.cookies.username);
     knex('users').where({
         username: req.cookies.username
-    }).select('avatar').then(function (values) {
+    }).select('avatar', 'gender').then(function (values) {
         console.log(111, values[0].avatar);
-        res.render('profile.html', {avatar: cloudinary.image(values[0].avatar)});
+        res.render('profile.html', {avatar: cloudinary.image(values[0].avatar), gender:values[0].gender});
     });
 
 

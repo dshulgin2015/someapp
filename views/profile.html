@@ -3,8 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Genderbox</title>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="assets/js/jquery.rss.min.js"></script>
+
 </head>
+<script>
+    jQuery(function($) {
+        $("#rss-feeds").rss("http://www.iup.edu/rss.aspx?pageid=232831",
+            {
+                entryTemplate:'<li><a href="{url}">[{author}@{date}] {title}</a><br/>{teaserImage}{shortBodyPlain}</li>',
+                limit: 10,
+            })
+    })
+</script>
 <style>
     #avatar {
 
@@ -20,10 +32,14 @@
 </style>
 <body>
 
+<br>
 <div style="position:relative;top:0px;right:0px">
     <span id="name"></span>
     <br/><br/><br/>
 </div>
+</br>
+
+</br>
 
 <form action="/upload" method="POST" enctype="multipart/form-data">
 
@@ -41,7 +57,7 @@
 </div>
 
 
-
+<div id="rss-feeds" style="position:absolute;top:0px;left:600px"></div>
 </body>
 <script>
     function getCookie(name) {

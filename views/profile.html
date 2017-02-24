@@ -5,6 +5,9 @@
     <title>Genderbox</title>
     <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!--<script src="assets/js/jquery.rss.min.js"></script>-->
     <link rel="stylesheet" href="assets/css/profile.css">
 
@@ -29,6 +32,13 @@
         max-height: 100%;
     }
 
+    .logoutLblPos{
+
+        position:fixed;
+        right:10px;
+        top:5px;
+    }
+
 
 </style>
 <body>
@@ -42,12 +52,16 @@
 
 </br>
 
+
+<div id="avatar">
+
+</div>
+
+<br>
+
 <form action="/upload" method="POST" enctype="multipart/form-data">
 
-        <div id="avatar">
 
-        </div>
-<br>
     Select an image to upload:
     <input type="file" name="avatar">
     <input type="submit" value="Upload Image">
@@ -58,7 +72,7 @@
 </div>
 
 
-<div id="rss-feeds" style="position:absolute;top:0px;left:600px"></div>
+<!--<div id="rss-feeds" style="position:absolute;top:0px;left:600px"></div>-->
 <br>
 <br>
 <form>
@@ -72,6 +86,12 @@
         <input type="submit" value="Submit">
     </fieldset>
 </form>
+
+
+    <button type="button" onclick="location.href = '/logout';" class="btn btn-default btn-sm logoutLblPos">
+        <span class="glyphicon glyphicon-log-out"></span> Log out
+    </button>
+
 </body>
 <script>
     function getCookie(name) {
@@ -82,7 +102,8 @@
     }
     var username = getCookie('username');
     var s = document.getElementById('name');
-    var div = document.getElementById( 'avatar' );
+    var div = document.getElementById('avatar');
+
     div.insertAdjacentHTML( 'beforeend', "<%- avatar %>" );
     s.textContent = 'Hello, ' + username;
 

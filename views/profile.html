@@ -22,16 +22,13 @@
     <!--})-->
 <!--</script>-->
 <style>
+
+
     #avatar {
 
         height: 200px;
         width: 50%;
     }
-    img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
     .portrait {
         height: 80px;
         width: 30px;
@@ -53,13 +50,25 @@
         right:10px;
         top:5px;
     }
+   img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 5px 5px 0 0;
+        border: 10px;
+        border-color: #333333;
+    }
+
+    /* Add some padding inside the card container */
+    .profile {
+        padding: 2px 16px;
+    }
 
 
 </style>
 <body>
 
 <br>
-<div style="position:relative;top:0px;right:0px">
+<div style="position:relative;padding-left:50px;top:0px;right:0px">
     <span id="name"></span>
     <br/><br/><br/>
 </div>
@@ -68,13 +77,13 @@
 </br>
 
 
-<div id="avatar" class="landscape">
+<div id="avatar" style="padding-left: 50px;">
 
 </div>
 
 <br>
 
-<form action="/upload" method="POST" enctype="multipart/form-data">
+<form action="/upload" method="POST" enctype="multipart/form-data" style="padding-left: 50px">
 
  <div >
     Select an image to upload:
@@ -83,7 +92,7 @@
  </div>
 </form>
 
-<div>
+<div style="padding-left: 50px">
     <p><%-gender%></p>
 </div>
 
@@ -91,7 +100,7 @@
 <!--<div id="rss-feeds" style="position:absolute;top:0px;left:600px"></div>-->
 <br>
 <br>
-<form>
+<form style="padding-left: 50px">
     <fieldset style="width: 300px">
         <legend>Specify your interests</legend>
         <input type="checkbox"> Sport <br>

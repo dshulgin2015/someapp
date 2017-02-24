@@ -22,7 +22,7 @@ router.post('/', function (req, res, next) {
         req.logIn(user, function(err) {
 
             if (err) { return next(err); }
-            if (!req.body.loggedin) {
+            if (!req.body.username) {
                 var randomNumber=Math.random().toString();
                 randomNumber=randomNumber.substring(2,randomNumber.length);
                 res.cookie('loggedin',randomNumber, { maxAge: 900000 });

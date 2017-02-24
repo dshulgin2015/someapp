@@ -27,8 +27,6 @@ router.post('/', (req, res, next) => {
             handleResponse(res, 500, 'error');
             console.log(err);
         });
-
-
 });
 
 function handleResponse(res, code, statusMsg) {

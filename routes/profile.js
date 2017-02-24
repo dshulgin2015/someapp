@@ -16,14 +16,17 @@ cloudinary.config({
 
 
 var isAuthenticated = function (req, res, next) {
-    if (req.cookies.loggedin || req.user){
+    if (req.cookies.username || req.user){
 
         return next();
     }
     res.redirect('/');
 }
 router.get('/', isAuthenticated, function(req, res) {
-    console.log(req.cookies.username);
+    if (req.cookies.username){
+        res.redirect('/');
+    }
+    res.redirect('/');
     knex('users').where({
         username: req.cookies.username
     }).select('avatar', 'gender').then(function (values) {

@@ -5,18 +5,19 @@
     <title>Genderbox</title>
     <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-    <script src="assets/js/jquery.rss.min.js"></script>
+        <!--<script src="assets/js/jquery.rss.min.js"></script>-->
+    <link rel="stylesheet" href="assets/css/profile.css">
 
 </head>
-<script>
-    jQuery(function($) {
-        $("#rss-feeds").rss("http://www.iup.edu/rss.aspx?pageid=232831",
-            {
-                entryTemplate:'<li><a href="{url}">[{author}@{date}] {title}</a><br/>{teaserImage}{shortBodyPlain}</li>',
-                limit: 10,
-            })
-    })
-</script>
+<!--<script>-->
+    <!--jQuery(function($) {-->
+        <!--$("#rss-feeds").rss("http://www.iup.edu/rss.aspx?pageid=232831",-->
+            <!--{-->
+                <!--entryTemplate:'<li><a href="{url}">[{author}@{date}] {title}</a><br/>{teaserImage}{shortBodyPlain}</li>',-->
+                <!--limit: 10,-->
+            <!--})-->
+    <!--})-->
+<!--</script>-->
 <style>
     #avatar {
 
@@ -83,8 +84,6 @@
     var s = document.getElementById('name');
     var div = document.getElementById( 'avatar' );
     div.insertAdjacentHTML( 'beforeend', "<%- avatar %>" );
-
-
     s.textContent = 'Hello, ' + username;
 
 </script>

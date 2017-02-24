@@ -32,6 +32,21 @@
         max-height: 100%;
     }
 
+    .portrait {
+        height: 80px;
+        width: 30px;
+    }
+
+    .landscape {
+        height: 30px;
+        width: 80px;
+    }
+
+    .square {
+        height: 75px;
+        width: 75px;
+    }
+
     .logoutLblPos{
 
         position:fixed;
@@ -53,7 +68,7 @@
 </br>
 
 
-<div id="avatar">
+<div id="avatar" class="landscape">
 
 </div>
 
@@ -61,10 +76,11 @@
 
 <form action="/upload" method="POST" enctype="multipart/form-data">
 
-
+ <div >
     Select an image to upload:
     <input type="file" name="avatar">
     <input type="submit" value="Upload Image">
+ </div>
 </form>
 
 <div>

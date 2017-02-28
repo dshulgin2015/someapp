@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--<script src="assets/js/jquery.rss.min.js"></script>-->
     <link rel="stylesheet" href="assets/css/profile.css">
 
@@ -48,75 +49,123 @@
 
         position:fixed;
         right:10px;
-        top:5px;
+        top:125px;
     }
    img {
         max-width: 100%;
         max-height: 100%;
-        border-radius: 5px 5px 0 0;
-        border: 10px;
-        border-color: #333333;
+
+    }
+
+    .fa-heart{
+        color: red;
+    }
+
+    .fa-money{
+        color: green;
     }
 
     /* Add some padding inside the card container */
-    .profile {
-        padding: 2px 16px;
-    }
 
 
 </style>
 <body>
 
-<br>
-<div style="position:relative;padding-left:50px;top:0px;right:0px">
-    <span id="name"></span>
-    <br/><br/><br/>
-</div>
-</br>
-
-</br>
-
-
-<div id="avatar" style="padding-left: 50px;">
+<div class="my-container">
+    <h1 style="color: #f6f6f6;font-style: italic">Choose your cycle</h1>
 
 </div>
 
 <br>
 
-<form action="/upload" method="POST" enctype="multipart/form-data" style="padding-left: 50px">
+<br>
 
- <div >
-    Select an image to upload:
-    <input type="file" name="avatar">
-    <input type="submit" value="Upload Image">
- </div>
-</form>
 
-<div style="padding-left: 50px">
-    <p><%-gender%></p>
-</div>
+    <nav id="profile" style="padding-left: 50px;">
 
+        <div>
+            <span id="name"></span>
+            <br/><br/><br/>
+        </div>
+        <div id="avatar">
+
+        </div>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <div >
+                Select an image to upload:
+                <input type="file" name="avatar">
+                <input type="submit" value="Upload Image">
+            </div>
+        </form>
+
+        <div>
+            <p><%= gender %></p>
+        </div>
+    </nav>
+
+
+
+<article class="article">
+
+
+    <ul class="products">
+        <% for(var i=0; i < 10; i++) { %>
+        <!--<img src={{'g:image_link'}}/>-->
+
+        <li>
+
+            <a href="#">
+                <img src="https://www.orangebikes.co.uk/images/2017_bikes/jpegs/324_RS_3Q_2017-116.jpg" width="100" height="100">
+            </a>
+            <h4 class="crop"><%=products[0].title%></h4>
+            <i class="fa fa-money"></i>
+            <span>£<%=products[0].price%></span>
+
+            <div class="divider"></div>
+
+            <i class="fa fa-heart"></i>
+            <span><%=products[0].likes%></span>
+
+            <div class="divider"></div>
+
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span><%=products[0].sold%></span>
+
+        </li>
+
+        <%} %>
+    </ul>
+</article>
+
+</br>
+
+</br>
+
+
+
+<br>
 
 <!--<div id="rss-feeds" style="position:absolute;top:0px;left:600px"></div>-->
 <br>
 <br>
-<form style="padding-left: 50px">
-    <fieldset style="width: 300px">
-        <legend>Specify your interests</legend>
-        <input type="checkbox"> Sport <br>
-        <input type="checkbox"> People <br>
-        <input type="checkbox"> Politics <br>
-        <input type="checkbox"> Environment <br>
-        <input type="checkbox"> Business <br>
-        <input type="submit" value="Submit">
-    </fieldset>
-</form>
+<!--<form style="padding-left: 50px">-->
+    <!--<fieldset style="width: 300px">-->
+        <!--<legend>Specify your interests</legend>-->
+        <!--<input type="checkbox"> Sport <br>-->
+        <!--<input type="checkbox"> People <br>-->
+        <!--<input type="checkbox"> Politics <br>-->
+        <!--<input type="checkbox"> Environment <br>-->
+        <!--<input type="checkbox"> Business <br>-->
+        <!--<input type="submit" value="Submit">-->
+    <!--</fieldset>-->
+<!--</form>-->
 
 
     <button type="button" onclick="location.href = '/logout';" class="btn btn-default btn-sm logoutLblPos">
         <span class="glyphicon glyphicon-log-out"></span> Log out
     </button>
-
 </body>
 <script>
     function getCookie(name) {
@@ -128,6 +177,11 @@
     var username = getCookie('username');
     var s = document.getElementById('name');
     var div = document.getElementById('avatar');
+
+    var obj = "<%= products[0] %>";
+
+
+    console.log(obj);
 
     div.insertAdjacentHTML( 'beforeend', "<%- avatar %>" );
     s.textContent = 'Hello, ' + username;

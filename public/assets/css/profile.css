@@ -1,8 +1,65 @@
-body {
-    background-color:#999999;
+.my-container {
+    position: relative;
+    overflow: hidden;
+    background-image: url("images/landing.jpg");
+}
+.my-container h1 {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+}
+
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    text-align: center;
+}
+.flex-container > * {
+    padding: 15px;
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+}
+
+article {
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+ul.products li {
+    width: 200px;
+    border: 2px solid black;
+    display: inline-block;
+    vertical-align: top;
+    horiz-align: right;
+    *display: inline;
+    *zoom: 1;
 }
 
 
+@media all and (min-width: 768px) {
+    .nav {text-align:left;-webkit-flex: 1 auto;flex:1 auto;-webkit-order:1;order:1;}
+    .article {-webkit-flex:5 0px;flex:5 0px;-webkit-order:2;order:2;}
+    footer {-webkit-order:3;order:3;}
+}
+
+
+
+
+nav {
+    float: left;
+    margin: 0;
+    border-right: 1px solid gray;
+}
 
 .fileUpload {
     position: relative;
@@ -19,15 +76,4 @@ body {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
-}
-
-#im {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("path/to/img");
-    background-repeat: no-repeat;
-    background-size: contain;
 }
